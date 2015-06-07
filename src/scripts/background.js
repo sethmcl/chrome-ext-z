@@ -40,6 +40,8 @@ chrome.tabs.onActivated.addListener(function (info) {
   pushTabHistory(info.tabId);
 });
 
+// Check if we should run post install script
+checkPostInstall();
 
 function queryTabs(query) {
   return new Promise(function (resolve, reject) {
@@ -57,10 +59,29 @@ function pushTabHistory(tabId, windowId) {
 }
 
 function selectTab(tabId) {
-  // chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-    // lastTabId = tabs[0].id;
     chrome.tabs.update(tabId, { active: true, highlighted: true }, function () {
       console.log('Selected tab %s', tabId);
     });
-  // });
 };
+
+function postInstall(version) {
+  if (!window.localStorage['installedVersion']) {
+    alert('Please restart chrome to finish installing the extension.');
+  } else {
+    alert('Please restart chrome to finish upgrading the extension.');
+  }
+
+  window.localStorage['installedVersion'] = version;
+}
+
+function checkPostInstall() {
+  var version = chrome.runtime.getManifest().version;
+  var lsVersion = window.localStorage['installedVersion'];
+
+  if (version !== lsVersion) {
+    console.log('Running post install...');
+    postInstall(version);
+  } else {
+    console.log('Skipping post install...');
+  }
+}
