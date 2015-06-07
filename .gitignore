@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+data/
+doc/
+.tmp/
+*.log
+coverage
+build
+coverage.csv

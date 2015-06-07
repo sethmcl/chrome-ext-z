@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "quotes": [2, 'single'],
+    "curly": 2,
+    "no-use-before-define": 0,
+    "no-underscore-dangle": 1,
+    "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+    "strict": 0,
+    "no-alert": 0,
+    "no-path-concat": 0
+  },
+
+  "env": {
+    "node": true,
+    "browser": true
+  },
+
+  "globals": {
+    "chrome": true,
+    "Promise": true
+  }
+}

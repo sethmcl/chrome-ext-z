@@ -1,0 +1,85 @@
+form#z-search-panel {
+    display: none;
+    font-family: sans-serif;
+    position: absolute;
+    z-index: 99999999;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .8);
+    padding: 20px;
+    border: 5px solid rgba(0, 0, 0, .3);
+    color: rgba(255, 255, 255, .8);
+}
+
+form#z-search-panel.active {
+    display: block;
+}
+
+form#z-search-panel input {
+    outline: none;
+    border: 0;
+    border-bottom: 3px solid rgba(255, 255, 255, .5);
+    height: 70px;
+    width: 100%;
+    font-size: 50px;
+    background: transparent;
+    color: rgba(255, 255, 255, .9);
+}
+
+form#z-search-panel input:focus {
+    border-bottom: 3px solid yellow;
+}
+
+form#z-search-panel ul {
+    min-height: 50px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+form#z-search-panel li {
+    height: 50px;
+    overflow: hidden;
+    display: table-row;
+}
+
+form#z-search-panel img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+form#z-search-panel .number-container {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+form#z-search-panel .icon-container {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 10px;
+}
+
+form#z-search-panel .number {
+    padding-top: 4px;
+    box-sizing: border-box;
+    font-weight: bold;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, .3);
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    display: inline-block;
+}
+
+form#z-search-panel .text {
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

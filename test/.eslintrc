@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "quotes": [2, 'single'],
+    "curly": 2,
+    "no-use-before-define": 0,
+    "no-underscore-dangle": 1,
+    "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+    "strict": 0
+  },
+
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+
+  "globals": {
+    "expect": true
+  }
+}

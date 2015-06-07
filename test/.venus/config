@@ -1,0 +1,13 @@
+// Configuration file for Venus
+// All paths can be relative (to the location of this config file) or absolute
+{
+  basePaths: {
+    '#scripts': '../../build/scripts/',
+    '#lib': '../../build/lib/',
+    '#node_modules': '../../node_modules/'
+  },
+
+  includes: {
+    default: './bind_polyfill.js'
+  }
+}
