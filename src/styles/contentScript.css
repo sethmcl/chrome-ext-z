@@ -2,16 +2,16 @@ form#z-search-panel {
     display: none;
     font-family: sans-serif;
     position: absolute;
-    z-index: 99999999;
+    z-index: 9999999999999999;
     top: 0;
     left: 0;
     min-width: 100%;
     min-height: 100%;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, .8);
+    background: rgb(45, 46, 50);
     padding: 20px;
     border: 5px solid rgba(0, 0, 0, .3);
-    color: rgba(255, 255, 255, .8);
+    color: rgba(255, 255, 255, .9);
 }
 
 form#z-search-panel.active {
@@ -21,16 +21,20 @@ form#z-search-panel.active {
 form#z-search-panel input {
     outline: none;
     border: 0;
-    border-bottom: 3px solid rgba(255, 255, 255, .5);
+    border-bottom: 0;
     height: 70px;
     width: 100%;
     font-size: 50px;
     background: transparent;
-    color: rgba(255, 255, 255, .9);
+    color: rgb(255, 255, 255);
+}
+
+form#z-search-panel input::-webkit-input-placeholder {
+    color: rgb(112, 138, 161);
 }
 
 form#z-search-panel input:focus {
-    border-bottom: 3px solid yellow;
+    border-bottom: 3px solid rgb(68, 75, 92);
 }
 
 form#z-search-panel ul {
@@ -64,16 +68,17 @@ form#z-search-panel .icon-container {
 }
 
 form#z-search-panel .number {
-    padding-top: 4px;
+    display: table-cell;
+    vertical-align: middle;
     box-sizing: border-box;
     font-weight: bold;
     height: 30px;
     width: 30px;
     border-radius: 30px;
-    background: rgba(255, 255, 255, .3);
-    color: rgba(255, 255, 255, 1);
+    background: rgb(65, 87, 141);
+    font-size: 18px;
+    color: rgb(137, 237, 246);
     text-align: center;
-    display: inline-block;
 }
 
 form#z-search-panel .text {

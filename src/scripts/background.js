@@ -1,7 +1,10 @@
 'use strict';
 
 var MessageRouter  = require('../lib/MessageRouter');
+var TabFinder      = require('../lib/TabFinder');
+
 var router         = new MessageRouter();
+var tabFinder      = new TabFinder();
 var tabHistory     = [];
 
 // Search for a tab
@@ -17,12 +20,13 @@ router.on('tab-list-query', function (e) {
 router.on('select-last-tab', function (e) {
   console.log(tabHistory);
   var count = Math.min(e.request.count, tabHistory.length - 1);
-  selectTab(tabHistory[count]);
+  var tab = tabHistory[count];
+  selectTab(tab.tabId, tab.windowId);
 });
 
 // Select a specific tab, by tab id
 router.on('select-tab', function (e) {
-  selectTab(e.request.tabId);
+  selectTab(e.request.tabId, e.request.windowId);
 });
 
 // Listen for keyboard shortcut command
@@ -46,22 +50,28 @@ checkPostInstall();
 function queryTabs(query) {
   return new Promise(function (resolve, reject) {
     chrome.tabs.query({}, function (tabs) {
-      resolve(tabs.filter(function (tab) {
-        return tab.url.match(query) || tab.title.match(query);
-      }));
+      resolve(tabFinder.query(query, tabs));
     });
   });
 };
 
 function pushTabHistory(tabId, windowId) {
-  tabHistory.unshift(tabId);
+  tabHistory.unshift({
+    tabId: tabId,
+    windowId: windowId
+  });
+
   tabHistory = tabHistory.slice(0, 5);
 }
 
-function selectTab(tabId) {
-    chrome.tabs.update(tabId, { active: true, highlighted: true }, function () {
-      console.log('Selected tab %s', tabId);
-    });
+function selectTab(tabId, windowId) {
+  chrome.tabs.update(tabId, { active: true, highlighted: true }, function () {
+    if (windowId) {
+      chrome.windows.update(windowId, { focused: true });
+    }
+
+    console.log('Selected tab %s', tabId);
+  });
 };
 
 function postInstall(version) {

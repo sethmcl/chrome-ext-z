@@ -83,7 +83,13 @@ Ui.prototype.renderResults = function (tabs) {
   this.resetResultList();
   this.tabResults = tabs;
 
-  // If there is only one r
+  // If there are none
+  if (tabs.length === 0) {
+    this.el.input.placeholder = 'no matches, try again';
+    return;
+  }
+
+  // If there is only one
   if (tabs.length === 1) {
     this.selectResult(1);
     return;
@@ -223,5 +229,5 @@ Ui.prototype.selectResult = function (idx) {
   var tab = this.tabResults[idx];
   this.resetResultList();
   this.hideSearchPanel();
-  this.router.send('select-tab', { tabId: tab.id });
+  this.router.send('select-tab', { tabId: tab.id, windowId: tab.windowId });
 };
