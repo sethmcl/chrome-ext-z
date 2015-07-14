@@ -12,10 +12,13 @@ window.addEventListener('load', function () {
 });
 
 // hijack event listeners
-var script = document.createElement('script');
-script.innerHTML = fs.readFileSync(__dirname + '/inPageCtx.js', 'utf8');
-script.id = 'chrome-ext-z-override';
-document.childNodes[1].appendChild(script);
+var attachHosts = ['www.google.com', 'www.bing.com'];
+if (attachHosts.indexOf(window.location.hostname) !== -1) {
+  var script = document.createElement('script');
+  script.innerHTML = fs.readFileSync(__dirname + '/inPageCtx.js', 'utf8');
+  script.id = 'chrome-ext-z-override';
+  document.childNodes[1].appendChild(script);
+}
 
 
 
